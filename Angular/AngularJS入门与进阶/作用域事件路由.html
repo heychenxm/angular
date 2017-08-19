@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>作用域事件路由</title>
+	<script src="../lib/angular.min.js"></script>
+	<style>
+		#parent{
+			width: 350px;
+			height: 250px;
+			border:1px solid #ccc;
+		}
+		#child{
+			width: 300px;
+			height: 200px;
+			border:3px solid #ccc;
+			margin: 10px auto;
+		}
+	</style>
+</head>
+<body ng-app="myApp">
+	<div id="parent" ng-controller="parentController">
+	父作用域
+		<div id="child" ng-controller="childController">
+			子作用域
+			<button ng-click="postEvent()">Emit</button>
+		</div>
+	</div>
+	<script>
+		var app = angular.module("myApp",[])
+		app.controller("parentController",function($scope){
+			$scope.$on("infoEvent",function(event,data){
+				console.log("接受到的作用域时间...");
+				console.log(data);
+			});
+		});
+		app.controller("childController",function($scope){
+			$scope.postEvent = function(){
+				$scope.$emit("infoEvent","这个是通过$emit从子作用域路由到父作用域的事件");
+			}
+		});
+	</script>
+</body>
+</html>

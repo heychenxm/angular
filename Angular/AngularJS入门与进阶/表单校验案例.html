@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>模板</title>
+	<script src="../lib/angular.min.js"></script>
+	<style>
+		input.ng-invalid{
+			border:#f00 1px solid;
+		}
+	</style>
+</head>
+<body ng-app="">
+	<form name="user">
+		<div>
+			<label>Email:</label>
+			<input type="email"
+					name="email"
+					minlength="10"
+					maxlength="20"
+					ng-model="email"
+					required/>
+					<span ng-show="user.email.$error.required">内容不能为空</span>
+					<span ng-show="user.email.$error.minlength">长度不能小于10</span>
+					<span ng-show="user.email.$error.maxlength">长度不不能大于20</span>
+					<span ng-show="user.email.$error.email">不符合Email格式</span>
+		</div>
+	</form>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>模板</title>
+	<script src="../lib/angular-1.6.5/angular.min.js"></script>
+<body ng-app="myApp" ng-controller="myCtrl">
+	用户名：<input type="text" ng-model="name"/>
+	<!-- <hello-world name-hello="{{name}}"></hello-world> -->
+	<hello-world name-hello="name"></hello-world>
+	<script>
+		var app = angular.module("myApp",[]);
+		app.directive("helloWorld",function(){
+			return {
+				scope : {
+					//使用@
+					// name : "@nameHello"			这个只能实现单向数据绑定
+					//使用=	
+					name : "=nameHello"
+				},
+				restrict :"E",
+				replace : true,
+				template : "<h1>HELLO,{{ name }}</h1>",
+				link : function(scope,elem,attrs){
+					scope.name = "陈小名";
+				}
+			}
+		});
+		app.controller("myCtrl",function($scope){
+			$scope.name = "chenxiaoming";			//通过=，实现的双向数据绑定
+		});
+	</script>
+</body>
+</html>

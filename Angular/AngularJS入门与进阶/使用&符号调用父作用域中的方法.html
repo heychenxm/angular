@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>模板</title>
+	<script src="../lib/angular-1.6.5/angular.min.js"></script>
+<body ng-app="myApp" ng-controller="myCtrl">
+	<hello-world on-message="onMessage()"></hello-world>
+	<script>
+		var app = angular.module("myApp",[]);
+		app.controller("myCtrl",function($scope){
+			$scope.onMessage = function(){
+				console.log("onMessage function is called...");
+			}
+		});
+		app.directive("helloWorld",function(){
+			return {
+				scope : {
+					onMessage : "&onMessage"
+				},
+				restrict : "E",
+				template : "<button ng-click='onMessage()'>Click me!</button>"
+			}
+		})
+	</script>
+</body>
+</html>

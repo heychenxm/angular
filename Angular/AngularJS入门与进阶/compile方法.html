@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>模板</title>
+	<script src="../lib/angular-1.6.5/angular.min.js"></script>
+<body ng-app="myApp">
+	<div repeat="5">
+		<div><h3>hello world!</h3></div>
+	</div>
+	<script>
+		var app = angular.module("myApp",[]);
+		app.directive("repeat",function(){
+			return {
+				restrict : "A",
+				replace : true,
+				compile : function(tElem,tAttrs){
+					console.log("compile...->" + tElem.html());
+					var temp =tElem.html();
+					for(var i=0;i<tAttrs.repeat-1;i++){
+						tElem.append(temp);
+					}
+					console.log("post compile...");
+				}
+			}
+		})
+	</script>
+</body>
+</html>

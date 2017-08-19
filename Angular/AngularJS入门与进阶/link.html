@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>模板</title>
+	<script src="../lib/angular-1.6.5/angular.min.js"></script>
+<body ng-app="myApp">
+	<hello-world name="chenxiaoming"></hello-world>
+	<script>
+		var app = angular.module("myApp",[]);
+		app.directive("helloWorld",function(){
+			return {
+				restrict : "AE",
+				replace : true,
+				template : "<h1>This is a example of link()!The content is {{ name }}</h1>",
+				link : function(scope,elem,attrs){
+					attrs.name = "陈小名";
+					scope.name = attrs.name;
+				}
+			}
+		})
+	</script>
+</body>
+</html>

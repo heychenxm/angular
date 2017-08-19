@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>模块解决命名冲突问题</title>
+	<script src="../lib/angular.min.js"></script>
+</head>
+<body ng-app="myApp">
+	<div ng-controller="userController">
+		<div>用户名：<input type="text" ng-model="uname" placeholder="用户名"></div>
+		<br>
+		<div>密码：<input type="password" ng-model="pword" placeholder="密码"></div>
+		<br>
+		<div><button ng-click="submit()">登录</button></div>
+	</div>
+	<br>
+	<div ng-controller="registerController">
+		<div>用户名：<input type="text" ng-model="uname" placeholder="用户名"></div>
+		<br>
+		<div>密码：<input type="password" ng-model="pword" placeholder="密码"></div>
+		<br>
+		<div><button ng-click="submit()">注册</button></div>
+	</div>
+	<script>
+		function userController($scope){
+			$scope.unam = "login";
+			$scope.pword = "admin";
+			$scope.submit = function(){
+				alert("登录模块：UserController");
+			}
+		}
+		function registerController($scope){
+			$scope.unam = "login";
+			$scope.pword = "admin";
+			$scope.submit = function(){
+				alert("注册模块：RegisterController");
+			}
+		}
+		var app = angular.module("myApp",[]);
+		app.controller("userController",userController);
+		app.controller("registerController",registerController);
+	</script>
+</body>
+</html>

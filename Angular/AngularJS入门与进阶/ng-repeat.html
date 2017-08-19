@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ng-repeat</title>
+	<script src="../lib/angular-1.6.5/angular.min.js"></script>
+	<style>
+		.wrapper{
+			width: 200px;
+			border: 1px solid red;
+		}
+	</style>
+<body ng-app="myApp" ng-controller="myCtrl">
+	<div ng-repeat="people in peopleMessage" class="wrapper">
+		<p>{{people.age}}</p>
+		<p>{{people.name}}</p>
+	</div>
+	<script>
+		var app = angular.module("myApp",[]);
+		app.controller("myCtrl",function($scope){
+			$scope.peopleMessage = [{"name":"chenxiaoming","age":12},{"name":"陈小名","age":21},{"name":"chendaming","age":24}]
+		})
+
+	</script>
+</body>
+</html>

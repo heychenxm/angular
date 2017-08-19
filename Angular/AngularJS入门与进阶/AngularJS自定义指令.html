@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自定义指令</title>
+	<script src="../lib/angular.min.js"></script>
+</head>
+<body ng-app="myApp">
+	<hello:world></hello:world>
+	<hello-world></hello-world>
+	<span hello:world></span hello:world>
+	<span hello-world></span hello-world>
+	<x-hello-world></x-hello-world>
+	<data-hello-world></data-hello-world>
+	<script>
+		var app = angular.module("myApp",[]);
+		app.directive("helloWorld",function(){
+			return {
+				restrict : "AEC",
+				replace : true,
+				template : "<h2>My first custom directive</h2>"
+			}
+		})
+	</script>
+</body>
+</html>

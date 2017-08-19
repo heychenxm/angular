@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>价格计算机</title>
+	<script src="../lib/angular.min.js"></script>
+	<style>
+		.wrapper{
+			width: 300px;
+			margin:200px auto;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper" ng-app ng-init="price=10;num=1">
+		<div>价格：<input type="number" ng-model="price"></div>
+		<div>数量：<input type="number" ng-model="num"></div>
+		<div>总价：{{ price * num }}</div>
+	</div>
+</body>
+</html>

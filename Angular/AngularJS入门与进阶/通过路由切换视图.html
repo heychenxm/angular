@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>模板</title>
+	<script src="../lib/angular.min.js"></script>
+	<link rel="stylesheet" href="../lib/bootstrap-3.3.7/dist/css/bootstrap.min.css">
+	<script src="../lib/jquery-3.1.1.min.js"></script>
+	<style>
+		.mainDiv{
+			margin: 25px 50px 75px 100px;
+		}
+	</style>
+</head>
+<body ng-app="myApp">
+	<div class="mainDiv">
+		<ul class="nav nav-tabs">
+			<li><a href="#/showOrders">
+			<span class="glyphicon glyphicon-th-list"></span>订单列表</a></li>
+			<li><a href="#/addOrder">
+			<span class="glyphicon glyphicon-plus"></span>新增订单</a></li>
+		</ul>
+		<div ng-view></div>
+	</div>
+</body>
+</html>

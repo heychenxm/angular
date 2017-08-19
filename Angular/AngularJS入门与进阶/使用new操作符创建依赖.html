@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>模板</title>
+	<script src="../lib/angular.min.js"></script>
+</head>
+<body>
+	<script>
+		function AppLog(){
+			this.startInfo = function(){
+				console.log("=====应用开始启动=====");
+				console.error("=====应用启动错误=====");
+				console.log("=====应用关闭，请检查错误=====");
+			}
+		}
+		function App(){
+			this.start = function(){
+				var log = new AppLog();
+				log.startInfo();
+			}
+		}
+		var app = new App();
+		app.start();
+	</script>
+</body>
+</html>

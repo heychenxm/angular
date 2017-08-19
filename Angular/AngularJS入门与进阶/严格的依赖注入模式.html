@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>严格的依赖注入模式</title>
+	<script src="../lib/angular.min.js"></script>
+</head>
+<body ng-app="myApp" ng-strict-di ng-controller="myCtrl">
+	{{ name }}
+	<script>
+		var app = angular.module("myApp",[])
+			//这种会抛出错误
+			// .controller("myCtrl",function($scope,$http){
+			// 	$scope.name = "chenxiaoming";
+			// });
+
+
+			//这种数组标注方式不会抛出错误
+			// .controller("myCtrl",["$scope","$http",function($scope,$http){
+			// 	$scope.name = "chenxiaoming";
+			// }]);
+
+			//$inject属性注入依赖
+			var myCtrl = function($scope,$http){
+				$scope.name = "chenxiaoming";
+			}
+			myCtrl.$inject = ["$scope","$http"];
+			app.controller("myCtrl",myCtrl);
+			//严格模式下，隐式声明依赖会抛出错误
+	</script>
+</body>
+</html>

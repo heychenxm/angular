@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>双向数据绑定</title>
+	<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body>
+<!-- 	<div>用户名：<input type="text" id="uname" name="uname"></div>
+	<div><span id="info"></span></div>
+	<script type="text/javascript">
+		var uname = document.getElementById("uname");
+		var info = document.getElementById("info");
+		uname.onkeyup = function(){
+			info.innerHTML = uname.value;
+		}		
+	</script>
+
+	<div ng-app="myApp" ng-controller="myCtrl">
+		<form novalidate>
+			<h2>用户名</h2>
+			<input type="text" ng-model="uname" placeholder="chenxiaomng">
+			<div>{{ uname }}</div>
+		</form>
+	</div>
+	<script>
+		angular.module("myApp",[])
+			.controller("myCtrl",function($scope){
+				$scope.uname = "chenxiaoming";
+			})
+	</script> -->
+
+	<!-- <div ng-app="app" ng-controller="myCtrl">
+		用户名：<input type="text" ng-model="uname" placeholder="chenxiaoming">
+		<div ng-bind="uname"></div>
+	</div>
+	<script>
+		angular.module("app",[])
+			.controller("myCtrl",function($scope){
+				$scope.uname = "chenxiaoming";
+			})
+	</script> -->
+</body>
+</html>

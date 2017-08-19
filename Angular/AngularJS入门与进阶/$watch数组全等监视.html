@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>$watch和$watchCollection</title>
+	<script src="../lib/angular.min.js"></script>
+</head>
+<body ng-app="myApp">
+	<div ng-repeat="item in items">
+		<input ng-model="item.value">&nbsp;<span>{{item.value}}</span>
+		<br><br>
+	</div>
+	<div>change count: {{ count }}</div>
+	<script>
+		angular.module("myApp",[])
+			.run(["$rootScope",function($rootScope){
+				$rootScope.count = 0;
+				$rootScope.items = [
+					{"value" : 1 },
+					{"value" : 2 },
+					{"value" : 3 },
+					{"value" : 4 }
+				]
+				$rootScope.$watch("items",function(){
+					$rootScope.count++;
+				},true)
+				// $rootScope.$watchCollection("items",function(){
+				// 	$rootScope.count++;
+				// })
+			}]);
+	</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>事件广播</title>
+	<script src="../lib/angular.min.js"></script>
+	<style>
+		#parent{
+			width: 450px;
+			height: 250px;
+			border:3px solid #ccc;
+		}
+		.child{
+			width: 150px;
+			height: 200px;
+			border:3px solid #ccc;
+			margin: 10px auto;
+			float: left;
+			margin-left: 20px;
+		}
+	</style>
+</head>
+<body ng-app="myApp">
+	<div id="parent" ng-controller="ParentController">
+		<div>父作用域
+			<button  ng-click="postEvent()">Broadcast</button>
+		</div>
+		<div class="child" ng-controller="Child1Controller">
+			子作用域1
+		</div>
+		<div class="child " ng-controller="Child2Controller">
+			子作用域2
+		</div>
+	</div>
+	<script>
+		var app = angular.module("myApp",[]);
+		app.controller("ParentController",function($scope){
+			$scope.postEvent = function(){
+				$scope.$broadcast("infoEvent",{name :"jane",age : 23});
+			}
+		});
+		app.controller("Child1Controller",function($scope){
+			$scope.$on("infoEvent",function(event,data){
+				// console.log("子作用域1接收到的父作用域广播时间...");
+				// console.log(data);
+			});
+		});
+		app.controller("Child2Controller",function($scope){
+			$scope.$on("infoEvent",function(event,data){
+				// console.log("子作用域2接收到的父作用域广播时间...");
+				// console.log(data);
+				console.log(event.name);
+				console.log(event.targetScope);
+				console.log(event.currentScope);
+				console.log(event.stopPropagation);
+			});
+		});
+	</script>
+</body>
+</html>

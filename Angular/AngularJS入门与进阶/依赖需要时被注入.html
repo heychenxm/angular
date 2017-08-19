@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head ng-app="myApp">
+	<meta charset="UTF-8">
+	<title>模板</title>
+	<script src="../lib/angular.min.js"></script>
+</head>
+<body ng-controller="myCtrl">
+	<script>
+		var app = angular.module("myApp",[]);
+		function AppLog(){
+			this.startInfo = function(){
+				console.log("=====应用开始启动=====");
+				console.error("=====应用启动错误=====");
+				console.log("=====应用关闭，请检查错误=====");
+			}
+		}
+		function App(appLog){
+			this.start = function(){
+				appLog.startInfo();
+			}
+		}
+
+		//调用service方法，创建一个可注入的AppLog对象
+		app.service("appLog",AppLog);
+		app.service("app",App);
+
+		app.controller("myCtrl",function(app){
+			app.start();
+		});
+	</script>
+</body>
+</html>

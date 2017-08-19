@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>指令中使用表达式</title>
+	<script src="../lib/angular-1.6.5/angular.min.js"></script>
+<body ng-app="myApp" ng-controller="myCtrl">
+	<input type="text" ng-model="name">
+	<hello-world></hello-world>
+	<script>
+		var app = angular.module("myApp",[]);
+		app.controller("myCtrl",function($scope){
+			$scope.name = "chenxiaoming";
+		});
+		app.directive("helloWorld",function(){
+			return {
+				restrict : "AE",
+				replace : true,
+				template : "<h1>Hello, {{ name }}</h1>"
+			}
+		});
+
+	</script>
+</body>
+</html>

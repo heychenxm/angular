@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>$aaply与$digest应用实战</title>
+	<script src="../lib/angular.min.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+	<div>
+		<button ng-click="scheduleTask()">3秒后回显信息</button>
+	</div>
+	<div>
+		{{ message }}
+	</div>
+	<script>
+		angular.module("myApp",[])
+			.controller("myCtrl",function($scope){
+				$scope.scheduleTask = function(){
+					setTimeout(function(){
+						$scope.$apply(function(){
+						$scope.message = "信息内容";
+						console.log('message = '+ $scope.message);
+						})
+					},3000);
+				}
+			});
+	</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>模板</title>
+	<script src="../lib/angular.min.js"></script>
+</head>
+<body ng-app="myApp">
+	<div ng-init="name='chenxiaoming';age=24"></div>
+	<div ng-controller="myCtrl"></div>
+	<script>
+		angular.module("myApp",[])
+			.controller("myCtrl",function($scope,$log){
+				$log.info($scope.name);
+				$log.info($scope.age);
+			})
+	</script>
+	<!-- 事实上，$rootScope是所有作用域的父作用域（除孤立作用域外） -->
+	<!-- 可以在ng-controller指令所在的HTML元素开始与结束标签之间使用另外一个ng-controller指令实现作用域的嵌套 -->
+</body>
+</html>

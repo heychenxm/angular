@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ng-template指令</title>
+	<script src="../lib/angular-1.6.5/angular.min.js"></script>
+	<script src="../lib/angular-1.6.5/angular-route.js"></script>
+</head>
+<body>
+	<div ng-app="myApp">
+		<a href="#view1">VIEW1</a>
+		<a href="#view1">VIEW1</a>
+		<div ng-view></div>
+		<script type="text/ng-template" id="view1.html">
+			<h2>View1内容<h2>
+			{{message}}
+		</script>
+		<script type="text/ng-template" id="view2.html">
+			<h2>View2内容<h2>
+			{{message}}
+		</script>
+	</div>
+	<script>
+		var app = angular.module("myApp",['ngRoute']);
+		app.config(['$routeProvider',function($routeProvider){
+			$routeProvider.
+				when("/view1",{
+					templateUrl:'view1.html',
+					controller:'view1Controller'
+				}).
+				when("/view2",{
+					templateUrl:'view2.html',
+					controller:'view2Controller'
+				})
+		}]);
+		app.controller('view1Controller',function($scope){
+			$scope.message = "chenxiaoming";
+		});
+		app.controller('view2Controller',function($scope){
+			$scope.message = "陈小名";
+		});
+	</script>
+</body>
+</html>
