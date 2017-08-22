@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>$q使用案例</title>
+	<script src="../lib/angular-1.6.5/angular.min.js"></script>
+<body ng-app="myApp">
+	<div ng-controller="myCtrl">
+		<div>结果:{{result}}</div>
+		<div>执行时间：{{totalTime}}</div>
+		<div>{{failure}}</div>
+	</div>
+	<script>
+		var app = angular.module("myApp",[]);
+		app.controller("myCtrl",function($scope,$q){
+			function add(x,y){
+				// 调用$q.defer()方法获取一个Deferred对象。与Promise对象相关联
+				var q = $q.defer();
+				setTimeout(function(){
+					var result = x+y;
+					if(result >= 0){
+						q.resolve(result);
+					}else{
+						q.reject("negatvie value:" + result);
+					}
+				},500);
+				return q.promise;
+			}
+			var startTime = Date.now();
+			var promise = add(20,30);
+			promise.then(function(result){
+				return add(result,40);
+			}).then(function(result){
+				$scope.result = result;
+			}).catch(function(failure){
+				$scope.failure = failure;
+			}).finally(function(){
+				$scope.totalTime = Date.now() - startTime;
+			});
+		});
+		/*
+		**Promise对象具有then/catch/finally三个方法，每个方法的调用都返回一个promise对象，这位链式调用提供了支撑。
+		*/
+	</script>
+</body>
+</html>

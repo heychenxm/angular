@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>模板</title>
+	<script src="../lib/angular-1.6.5/angular.min.js"></script>
+	<link rel="stylesheet" href="../lib/bootstrap-3.3.7/dist/css/bootstrap.css">
+	<link rel="stylesheet" href="../lib/bootstrap-3.3.7/dist/css/bootstrap-theme.css">
+	<script src="../lib/jquery-3.1.1.min.js"></script>
+<body ng-app="myApp">
+	<div ng-controller="myCtrl">
+		<table class="table table-bordered">
+			<thead>
+				<tr class="bg-info">
+					<th>姓名</th>
+					<th>年龄</th>
+					<th>性别</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="person in persons">
+					<td>{{person.name}}</td>
+					<td>{{person.age}}</td>
+					<td>{{person.sex}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<button class="btn btn-info" ng-click="getInfo()">获取信息</button>
+	</div>
+
+	<script>
+		var app = angular.module("myApp",[]);
+		app.controller("myCtrl",function($scope,$http){
+			$scope.getInfo = function(){
+				// var res = $http({method:"get",url:"person.json"});		//配置对象
+				// res.then(function(data,status,headers,config){
+				// 	console.log(data);
+				// 	console.log(data.data);
+				// 	// $scope.persons = data;
+				// 	$scope.persons = data.data;
+				// })
+				$http({method:"get",url:"lib/person.json"}).then(function(result){
+					$scope.persons = result.data;
+				})
+			};
+		})
+	</script>
+</body>
+</html>
